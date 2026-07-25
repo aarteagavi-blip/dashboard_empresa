@@ -81,15 +81,25 @@ with st.spinner("Conectando con la base de datos..."):
 
 st.markdown("""
 <style>
+/* 1. Fondo del contenedor principal transparente */
+.stApp {
+    background-color: transparent !important;
+}
 
-/* Fondo principal con imagen */
-.stApp{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), 
-                      url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400");
+/* 2. Imagen de fondo con transparencia ajustable */
+.stApp::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    opacity: 0.3;  /* <--- AQUÍ AJUSTAS LA TRANSPARENCIA (Ejemplo: 0.3 = 30% visible, muy tenue) */
+    z-index: -1;   /* Mantiene la imagen detrás de todos tus elementos */
 }
 
 /* Mantener fijo el ancho del Sidebar */
