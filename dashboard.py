@@ -70,9 +70,19 @@ with st.spinner("Conectando con la base de datos..."):
 st.markdown("""
 <style>
 
-/* Fondo principal */
+/* Fondo principal con imagen */
 .stApp{
-    background-color:#F5F7FA;
+    background-image: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Mantener fijo el ancho del Sidebar */
+section[data-testid="stSidebar"]{
+    min-width:320px !important;
+    max-width:320px !important;
 }
 
 /* Títulos */
@@ -81,17 +91,13 @@ h1{
     font-weight:bold;
 }
 
-h2,h3{
-    color:#1F4E79;
-}
-
-/* Tarjetas de métricas */
+/* Tarjetas con opacidad */
 [data-testid="stMetric"]{
-    background-color:white;
-    border:1px solid #E5E5E5;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0px 3px 8px rgba(0,0,0,0.10);
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #E5E5E5;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.10);
 }
 
 /* Sidebar */
@@ -100,7 +106,11 @@ h2,h3{
 }
 
 /* Texto del Sidebar */
-[data-testid="stSidebar"] *{
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] p{
     color:white;
 }
 
@@ -133,10 +143,6 @@ with col2:
     st.title("WIGO MOTORS S.A.C. 🚗")
     st.caption("Comercial de Ventas")
 
-st.image(
-    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400",
-    use_container_width=True
-)
 
 st.divider()
 
@@ -178,7 +184,20 @@ if asesor != "Todos":
 if sede != "Todas":
     df_filtrado = df_filtrado[df_filtrado["tienda"] == sede]
 
+minimo = int(df_filtrado["precio_venta"].min())
+maximo = int(df_filtrado["precio_venta"].max())
 
+rango = st.sidebar.slider(
+    "💰 Rango de precio",
+    min_value=minimo,
+    max_value=maximo,
+    value=(minimo, maximo)
+)
+
+df_filtrado = df_filtrado[
+    (df_filtrado["precio_venta"] >= rango[0]) &
+    (df_filtrado["precio_venta"] <= rango[1])
+]
 
 # INDICADORES GENERALES: 
 
