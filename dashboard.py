@@ -1,13 +1,17 @@
 
 import streamlit as st
+
+st.set_page_config(
+    page_title="Wigo Motors",
+    page_icon="🚗",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 from conexion import cargar_datos
 from indicadores import *
 from graficos import *
 
 df = cargar_datos()
-
-st.set_page_config(page_title = "Wigo Motors", 
-                    layout="wide")
 
 st.title("WIGO MOTORS S.A.C.")  #titulo principal
 st.subheader("Buscador comercial")  #sub titulo
