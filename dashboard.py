@@ -1,5 +1,6 @@
 
 import streamlit as st
+import pandas as pd
 
 # -------------------------
 # Control de sesión
@@ -19,7 +20,18 @@ from conexion import cargar_datos
 from indicadores import *
 from graficos import *
 
+def formatear_precio(valor):
+    # Si es Nulo o NaN según Pandas
+    if pd.isna(valor):
+        return "0.00"
 
+    try:
+        # Intenta convertir a número flotante y formatear
+        val_float = float(valor)
+        return f"{val_float:,.2f}"
+    except (ValueError, TypeError):
+        # Si no se pudo convertir a número (ej. texto inválido)
+        return "0.00"
 
 # ==========================
 # LOGIN
