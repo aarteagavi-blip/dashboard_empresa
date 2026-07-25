@@ -17,7 +17,7 @@ def grafico_ventas(df):
         ventas,
         x="marca",
         y="cantidad",
-        title="🚗 Ventas por Marca",
+        #title="🚗 Ventas por Marca",
         text_auto=True,
         color="cantidad",
         color_continuous_scale="Blues"
@@ -25,7 +25,15 @@ def grafico_ventas(df):
 
     grafico01.update_layout(
 
-        title_x=0.5,
+        #title_x=0.5,
+
+        title={
+                "text": "🚗 Ventas por Marca",
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top",
+            },
+        title_xanchor="center",
 
         plot_bgcolor="white",
 
@@ -69,7 +77,7 @@ def grafico_promedio(df):
 
         y="precio_venta",
 
-        title="💰 Precio Promedio por Marca",
+        #title="💰 Precio Promedio por Marca",
 
         text_auto=".2f",
 
@@ -81,7 +89,15 @@ def grafico_promedio(df):
 
     grafico02.update_layout(
 
-        title_x=0.5,
+        #title_x=0.5,
+
+        title={
+                "text": "💰 Precio Promedio por Marca",
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top",
+            },
+        title_xanchor="center",
 
         plot_bgcolor="white",
 
@@ -123,7 +139,7 @@ def grafico_participacion(df):
         names="marca",
         values="cantidad",
         hole=0.55,
-        title="📊 Participación de Ventas por Marca"
+        #title="📊 Participación de Ventas por Marca"
     )
 
     grafico03.update_traces(
@@ -132,7 +148,12 @@ def grafico_participacion(df):
     )
 
     grafico03.update_layout(
-        title_x=0.5
-    )
+    title={
+        "text": "📊 Participación de Ventas por Marca",
+        "x": 0.5,
+        "xanchor": "center",
+        "yanchor": "top",
+    }
+)
 
     return grafico03
