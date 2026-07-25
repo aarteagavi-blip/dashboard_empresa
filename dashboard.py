@@ -84,7 +84,8 @@ st.markdown("""
 
 /* Fondo principal con imagen */
 .stApp{
-    background-image: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), 
+                      url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
